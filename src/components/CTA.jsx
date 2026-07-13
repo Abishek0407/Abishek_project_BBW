@@ -4,7 +4,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const BOOKING_API_URL = 'https://abi-project-bbw-brotherbehindwheels.onrender.com/api/Booking/create'; // ✏️ fix typo: was /api/ooking/create
+const BOOKING_API_URL = 'http://localhost:5678/api/Booking/create'; // ✏️ fix typo: was /api/ooking/create
 
 const services = [
   { id: 'essential', label: 'Essential Car Wash', group: 'Car Wash' },
