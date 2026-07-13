@@ -228,7 +228,7 @@ const AdminLogin = () => {
 
   // Fetch pending count on page load so badge shows before login
   useEffect(() => {
-    fetch("https://abi-project-bbw-brotherbehindwheels.onrender.com/api/Booking/pending-count")
+    fetch("http://localhost:5678/api/Booking/pending-count")
       .then((r) => r.json())
       .then((d) => { if (d.success) setPendingCount(d.count); })
       .catch(() => {});
@@ -239,7 +239,7 @@ const AdminLogin = () => {
     setLoading(true);
     setError("");
     try {
-      const response = await fetch("https://abi-project-bbw-brotherbehindwheels.onrender.com/api/Booking/all", {
+      const response = await fetch("http://localhost:5678/api/Booking/all", {
         method: "GET",
         headers: { username, password },
       });
@@ -270,7 +270,7 @@ const AdminLogin = () => {
   const handleMarkCompleted = async (id) => {
     setUpdatingId(id);
     try {
-      const response = await fetch(`https://abi-project-bbw-brotherbehindwheels.onrender.com/api/Booking/status/${id}`, {
+      const response = await fetch(`http://localhost:5678/api/Booking/status/${id}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json", username: adminCreds.username, password: adminCreds.password },
         body: JSON.stringify({ status: "completed" }),
