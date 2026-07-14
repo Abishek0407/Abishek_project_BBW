@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { Hammer, ShoppingBag, Settings, Truck } from 'lucide-react';
 import card1 from '../assets/garage_card_1.png';
 import card2 from '../assets/garage_card_2.png';
 import card3 from '../assets/garage_card_3.png';
@@ -437,6 +438,15 @@ const Modal = ({ cardIndex, onClose }) => {
   );
 };
 
+// ─── Quick links marquee data ──────────────────────────────────────────────────
+
+const quickLinks = [
+  { label: 'Body Shop', href: '#body-shop', icon: Hammer },
+  { label: 'Car Accessories', href: '#car-accessories', icon: ShoppingBag },
+  { label: 'General Service', href: '#general-service', icon: Settings },
+  { label: 'Towing & Roadside Assistance', href: '#towing-&-roadside-assistance', icon: Truck },
+];
+
 // ─── Card data ────────────────────────────────────────────────────────────────
 
 const cars = [
@@ -568,7 +578,50 @@ const Garage = () => {
             ))}
           </div>
         </div>
+
+        {/* Quick Links Marquee */}
+        <div className="mt-16 sm:mt-24">
+          <p className="text-center text-yellow-400 text-xs font-bold tracking-[0.4em] uppercase mb-6">
+            Explore More
+          </p>
+          <div className="relative overflow-hidden">
+            <div className="pointer-events-none absolute inset-y-0 left-0 w-16 sm:w-32 bg-gradient-to-r from-black to-transparent z-10" />
+            <div className="pointer-events-none absolute inset-y-0 right-0 w-16 sm:w-32 bg-gradient-to-l from-black to-transparent z-10" />
+            <div className="flex w-max gap-4 sm:gap-6 marquee-track">
+              {[...quickLinks, ...quickLinks].map((item, i) => {
+                const Icon = item.icon;
+                return (
+                  <a
+                    key={i}
+                    href={item.href}
+                    className="flex items-center gap-3 shrink-0 bg-zinc-900 border border-white/10 hover:border-yellow-400/50 rounded-full pl-4 pr-6 py-3 transition-colors duration-300 group"
+                  >
+                    <span className="flex items-center justify-center w-9 h-9 rounded-full bg-yellow-400/10 text-yellow-400 group-hover:bg-yellow-400 group-hover:text-black transition-colors duration-300 shrink-0">
+                      <Icon size={18} strokeWidth={2.2} />
+                    </span>
+                    <span className="text-white/90 group-hover:text-yellow-400 text-sm font-bold tracking-tight whitespace-nowrap transition-colors duration-300">
+                      {item.label}
+                    </span>
+                  </a>
+                );
+              })}
+            </div>
+          </div>
+        </div>
       </section>
+
+      <style>{`
+        @keyframes bbwMarquee {
+          from { transform: translateX(0); }
+          to { transform: translateX(-50%); }
+        }
+        .marquee-track {
+          animation: bbwMarquee 22s linear infinite;
+        }
+        .marquee-track:hover {
+          animation-play-state: paused;
+        }
+      `}</style>
 
       {/* Modal */}
       {activeModal !== null && (
