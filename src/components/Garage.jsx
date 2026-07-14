@@ -594,12 +594,13 @@ const Garage = () => {
                   <a
                     key={i}
                     href={item.href}
-                    className="flex items-center gap-3 shrink-0 bg-zinc-900 border border-white/10 hover:border-yellow-400/50 rounded-full pl-4 pr-6 py-3 transition-colors duration-300 group"
+                    style={{ width: '250px', height: '150px' }}
+                    className="flex flex-col items-center justify-center gap-2 shrink-0 bg-zinc-900 border border-white/10 hover:border-yellow-400/50 rounded-2xl px-2 text-center transition-colors duration-300 group"
                   >
                     <span className="flex items-center justify-center w-9 h-9 rounded-full bg-yellow-400/10 text-yellow-400 group-hover:bg-yellow-400 group-hover:text-black transition-colors duration-300 shrink-0">
                       <Icon size={18} strokeWidth={2.2} />
                     </span>
-                    <span className="text-white/90 group-hover:text-yellow-400 text-sm font-bold tracking-tight whitespace-nowrap transition-colors duration-300">
+                    <span className="text-white/90 group-hover:text-yellow-400 text-[11px] leading-tight font-bold tracking-tight transition-colors duration-300">
                       {item.label}
                     </span>
                   </a>
