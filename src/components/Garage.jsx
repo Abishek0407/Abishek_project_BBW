@@ -7,6 +7,12 @@ import card3 from '../assets/garage_card_3.png';
 import card4 from '../assets/addonImg.png';
 import card5 from '../assets/Detaling.png';
 import card6 from '../assets/membership.jpg';
+import modalImgEssential from '../assets/card_image/final_essential.png';
+import modalImgSignature from '../assets/card_image/final_signature.png';
+import modalImgPlatinum from '../assets/card_image/final_platinum.png';
+import modalImgDetailing from '../assets/card_image/final_detailing.png';
+import modalImgAddon from '../assets/card_image/final_addon.png';
+import modalImgMembership from '../assets/card_image/final_membership.png';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -20,7 +26,7 @@ const modalData = {
     originalPrice: '₹1299',
     duration: '45 to 50 minutes',
     color: '#FACC15',
-    image: card1,
+    image: modalImgEssential,
     steps: [
       { num: 1, label: 'Exterior Foam Wash' },
       { num: 2, label: 'Interior Vacuum' },
@@ -38,7 +44,7 @@ const modalData = {
     originalPrice: '₹1799',
     duration: '1 to 1.5 hrs',
     color: '#FACC15',
-    image: card2,
+    image: modalImgSignature,
     steps: [
       { num: 1, label: 'Pre Wash (Degreasing)' },
       { num: 2, label: 'Exterior Foam Wash' },
@@ -61,7 +67,7 @@ const modalData = {
     originalPrice: '₹2599',
     duration: '1.5 to 2 hrs',
     color: '#FACC15',
-    image: card3,
+    image: modalImgPlatinum,
     steps: [
       { num: 1, label: 'Pre Wash (Degreasing)' },
       { num: 2, label: 'Exterior Foam Wash' },
@@ -86,7 +92,7 @@ const modalData = {
     subtitle: 'Restore • Refresh • Showroom Finish',
     price: null,
     color: '#FACC15',
-    image: card5,
+    image: modalImgDetailing,
     packages: [
       {
         num: '1',
@@ -136,7 +142,7 @@ const modalData = {
     subtitle: 'Enhance • Protect • Go the Extra Mile',
     price: null,
     color: '#FACC15',
-    image: card4,
+    image: modalImgAddon,
     addons: [
       { name: 'Ceramic Spray Coating', price: '₹999' },
       { name: 'Rat Spray', price: '₹999' },
@@ -159,7 +165,7 @@ const modalData = {
     subtitle: 'Save More • Stay Ahead • Always Ready',
     price: null,
     color: '#FACC15',
-    image: card6,
+    image: modalImgMembership,
     plans: [
       {
         name: 'Essential Care',
