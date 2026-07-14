@@ -7,6 +7,12 @@ import card3 from '../assets/garage_card_3.png';
 import card4 from '../assets/addonImg.png';
 import card5 from '../assets/Detaling.png';
 import card6 from '../assets/membership.jpg';
+import modalImgEssential from '../assets/card_image/final_essential.png';
+import modalImgSignature from '../assets/card_image/final_signature.png';
+import modalImgPlatinum from '../assets/card_image/final_platinum.png';
+import modalImgDetailing from '../assets/card_image/final_detailing.png';
+import modalImgAddon from '../assets/card_image/final_addon.png';
+import modalImgMembership from '../assets/card_image/final_membership.png';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -20,6 +26,7 @@ const modalData = {
     originalPrice: '₹1299',
     duration: '45 to 50 minutes',
     color: '#FACC15',
+    image: modalImgEssential,
     steps: [
       { num: 1, label: 'Exterior Foam Wash' },
       { num: 2, label: 'Interior Vacuum' },
@@ -37,6 +44,7 @@ const modalData = {
     originalPrice: '₹1799',
     duration: '1 to 1.5 hrs',
     color: '#FACC15',
+    image: modalImgSignature,
     steps: [
       { num: 1, label: 'Pre Wash (Degreasing)' },
       { num: 2, label: 'Exterior Foam Wash' },
@@ -59,6 +67,7 @@ const modalData = {
     originalPrice: '₹2599',
     duration: '1.5 to 2 hrs',
     color: '#FACC15',
+    image: modalImgPlatinum,
     steps: [
       { num: 1, label: 'Pre Wash (Degreasing)' },
       { num: 2, label: 'Exterior Foam Wash' },
@@ -83,6 +92,7 @@ const modalData = {
     subtitle: 'Restore • Refresh • Showroom Finish',
     price: null,
     color: '#FACC15',
+    image: modalImgDetailing,
     packages: [
       {
         num: '1',
@@ -132,6 +142,7 @@ const modalData = {
     subtitle: 'Enhance • Protect • Go the Extra Mile',
     price: null,
     color: '#FACC15',
+    image: modalImgAddon,
     addons: [
       { name: 'Ceramic Spray Coating', price: '₹999' },
       { name: 'Rat Spray', price: '₹999' },
@@ -154,6 +165,7 @@ const modalData = {
     subtitle: 'Save More • Stay Ahead • Always Ready',
     price: null,
     color: '#FACC15',
+    image: modalImgMembership,
     plans: [
       {
         name: 'Essential Care',
@@ -216,8 +228,19 @@ const CheckIcon = () => (
   </svg>
 );
 
+const ModalImage = ({ src, alt }) => {
+  if (!src) return null;
+  return (
+    <div className="relative w-full h-40 sm:h-52 md:h-64 rounded-xl overflow-hidden mb-6">
+      <img src={src} alt={alt} className="w-full h-full object-cover" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
+    </div>
+  );
+};
+
 const WashModal = ({ data, onClose }) => (
-  <div className="p-6 md:p-8">
+  <div className="p-4 sm:p-6 md:p-8">
+    <ModalImage src={data.image} alt={data.title} />
     {/* Header */}
     <div className="flex items-start justify-between mb-6">
       <div>
@@ -260,7 +283,8 @@ const WashModal = ({ data, onClose }) => (
 );
 
 const DetailingModal = ({ data, onClose }) => (
-  <div className="p-6 md:p-8">
+  <div className="p-4 sm:p-6 md:p-8">
+    <ModalImage src={data.image} alt={data.title} />
     <div className="flex items-start justify-between mb-6">
       <div>
         <span className="text-xs font-bold tracking-widest text-yellow-400 uppercase">{data.subtitle}</span>
@@ -294,7 +318,8 @@ const DetailingModal = ({ data, onClose }) => (
 );
 
 const AddonModal = ({ data, onClose }) => (
-  <div className="p-6 md:p-8">
+  <div className="p-4 sm:p-6 md:p-8">
+    <ModalImage src={data.image} alt={data.title} />
     <div className="flex items-start justify-between mb-6">
       <div>
         <span className="text-xs font-bold tracking-widest text-yellow-400 uppercase">{data.subtitle}</span>
@@ -322,7 +347,8 @@ const AddonModal = ({ data, onClose }) => (
 );
 
 const MembershipModal = ({ data, onClose }) => (
-  <div className="p-6 md:p-8">
+  <div className="p-4 sm:p-6 md:p-8">
+    <ModalImage src={data.image} alt={data.title} />
     <div className="flex items-start justify-between mb-6">
       <div>
         <span className="text-xs font-bold tracking-widest text-yellow-400 uppercase">{data.subtitle}</span>
@@ -479,13 +505,13 @@ const Garage = () => {
 
   return (
     <>
-      <section id="garage" ref={sectionRef} className="bg-black py-32 px-6">
+      <section id="garage" ref={sectionRef} className="bg-black py-16 sm:py-24 md:py-32 px-4 sm:px-6">
         <div className="max-w-7xl mx-auto">
           {/* Section Header */}
-          <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-16 gap-6">
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-10 sm:mb-16 gap-4 sm:gap-6">
             <div>
               <p className="text-yellow-400 text-xs font-bold tracking-[0.4em] uppercase mb-3">Our Garage</p>
-              <h2 className="text-5xl md:text-7xl font-black text-white tracking-tighter leading-none">
+              <h2 className="text-4xl sm:text-5xl md:text-7xl font-black text-white tracking-tighter leading-none">
                 <span className="text-yellow-400">Services.</span>
               </h2>
             </div>
@@ -495,7 +521,7 @@ const Garage = () => {
           </div>
 
           {/* Cards Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
             {cars.map((car, i) => (
               <div
                 key={i}
@@ -530,7 +556,7 @@ const Garage = () => {
                   {/* View button — now functional */}
                   <button
                     onClick={() => setActiveModal(i)}
-                    className="mt-4 flex items-center gap-2 text-yellow-400 text-xs font-bold tracking-widest uppercase opacity-1 group-hover:opacity-100 transition-opacity duration-300 hover:gap-3"
+                    className="mt-4 flex items-center gap-2 text-yellow-400 text-xs font-bold tracking-widest uppercase opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300 hover:gap-3"
                   >
                     <span>View Details</span>
                     <span>→</span>
