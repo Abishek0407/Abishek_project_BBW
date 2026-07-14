@@ -10,7 +10,7 @@ import card6 from '../assets/membership.jpg';
 import modalImgEssential from '../assets/card_image/final_essential.png';
 import modalImgSignature from '../assets/card_image/final_signature.png';
 import modalImgPlatinum from '../assets/card_image/final_platinum.png';
-import modalImgDetailing from '../assets/card_image/final_detailing.png';
+import modalImgDetailing from '../assets/card_image/final_detaling.png';
 import modalImgAddon from '../assets/card_image/final_addon.png';
 import modalImgMembership from '../assets/card_image/final_membership.png';
 
@@ -231,9 +231,8 @@ const CheckIcon = () => (
 const ModalImage = ({ src, alt }) => {
   if (!src) return null;
   return (
-    <div className="relative w-full h-40 sm:h-52 md:h-64 rounded-xl overflow-hidden mb-6">
-      <img src={src} alt={alt} className="w-full h-full object-cover" />
-      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
+    <div className="w-full rounded-xl overflow-hidden mb-6 bg-black">
+      <img src={src} alt={alt} className="w-full h-auto object-contain" />
     </div>
   );
 };
