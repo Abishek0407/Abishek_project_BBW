@@ -446,18 +446,14 @@ const Garage = () => {
                 <a
                   key={i}
                   href={item.href}
-                  style={{ width: '200px', height: '200px' }}
-                  className="relative shrink-0 rounded-2xl overflow-hidden border border-white/10 hover:border-yellow-400/50 transition-colors duration-300 group"
+                  style={{ width: '160px', height: '160px' }}
+                  className="relative shrink-0 rounded-2xl overflow-hidden bg-zinc-900 border border-white/10 hover:border-yellow-400/50 transition-colors duration-300"
                 >
                   <img
                     src={item.image}
                     alt={item.label}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-contain"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/10 to-transparent" />
-                  <span className="absolute bottom-1.5 left-1 right-1 text-white group-hover:text-yellow-400 text-[10px] leading-tight font-bold text-center transition-colors duration-300">
-                    {item.label}
-                  </span>
                 </a>
               ))}
             </div>
