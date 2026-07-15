@@ -8,7 +8,7 @@ import card3 from '../assets/garage_card_3.png';
 import card4 from '../assets/addonImg.png';
 import card5 from '../assets/Detaling.png';
 import card6 from '../assets/membership.jpg';
-import modalImgEssential from '../assets/card_image/final_essential1.png';
+import modalImgEssential from '../assets/card_image/final_essential1.png'
 import modalImgSignature from '../assets/card_image/final_signature1.png';
 import modalImgPlatinum from '../assets/card_image/final_platinum1.png';
 import modalImgDetailing from '../assets/card_image/final_detaling.png';
