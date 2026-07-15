@@ -1,19 +1,22 @@
 import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Hammer, ShoppingBag, Settings, Truck } from 'lucide-react';
 import card1 from '../assets/garage_card_1.png';
 import card2 from '../assets/garage_card_2.png';
 import card3 from '../assets/garage_card_3.png';
 import card4 from '../assets/addonImg.png';
 import card5 from '../assets/Detaling.png';
 import card6 from '../assets/membership.jpg';
-import modalImgEssential from '../assets/card_image/final_essential1.png'
+import modalImgEssential from '../assets/card_image/final_essential1.png';
 import modalImgSignature from '../assets/card_image/final_signature1.png';
 import modalImgPlatinum from '../assets/card_image/final_platinum1.png';
 import modalImgDetailing from '../assets/card_image/final_detaling.png';
 import modalImgAddon from '../assets/card_image/final_addon.png';
 import modalImgMembership from '../assets/card_image/final_membership.png';
+import bodyShopImg from '../assets/card_image/Body_shop.png';
+import carAccessoriesImg from '../assets/card_image/car_accessories.png';
+import generalServiceImg from '../assets/card_image/general_services.png';
+import towingImg from '../assets/card_image/towing_roadside_assit.png';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -229,166 +232,20 @@ const CheckIcon = () => (
   </svg>
 );
 
-const ModalImage = ({ src, alt }) => {
-  if (!src) return null;
-  return (
-    <div className="w-full rounded-xl overflow-hidden mb-6 bg-black">
-      <img src={src} alt={alt} className="w-full h-auto object-contain" />
-    </div>
-  );
-};
-
-const WashModal = ({ data, onClose }) => (
-  <div className="p-4 sm:p-6 md:p-8">
-    <ModalImage src={data.image} alt={data.title} />
-    {/* Header */}
-    <div className="flex items-start justify-between mb-6">
-      <div>
-        <span className="text-xs font-bold tracking-widest text-yellow-400 uppercase">{data.subtitle}</span>
-        <h2 className="text-2xl md:text-3xl font-black text-white mt-1">{data.title}</h2>
-        <div className="flex items-center gap-3 mt-2">
-          <span className="text-2xl font-black text-yellow-400">{data.price}</span>
-          {data.originalPrice && (
-            <span className="text-white/90 text-base line-through">{data.originalPrice}</span>
-          )}
-          {data.duration && (
-            <span className="text-white/90 text-xs">⏱ {data.duration}</span>
-          )}
-        </div>
-      </div>
-      <button onClick={onClose} className="text-white/90 hover:text-yellow-600 transition-colors text-2xl leading-none mt-1">✕</button>
-    </div>
-
-    {/* Steps grid */}
-    <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5 mb-6">
-      {data.steps.map((s) => (
-        <div key={s.num} className="flex items-center gap-2.5 bg-white/5 border border-white/10 rounded-xl px-3 py-2.5">
-          <span className="w-6 h-6 rounded-full bg-yellow-400 text-black text-xs font-black flex items-center justify-center shrink-0">
-            {s.num}
-          </span>
-          <span className="text-white/90 text-xs font-medium leading-tight">{s.label}</span>
-        </div>
-      ))}
-    </div>
-
-    {/* Perks */}
-    <div className="flex flex-wrap gap-2">
-      {data.perks.map((p) => (
-        <span key={p} className="px-3 py-1 bg-yellow-400/10 border border-yellow-400/30 text-yellow-400 text-xs font-bold rounded-full">
-          {p}
-        </span>
-      ))}
-    </div>
-  </div>
-);
-
-const DetailingModal = ({ data, onClose }) => (
-  <div className="p-4 sm:p-6 md:p-8">
-    <ModalImage src={data.image} alt={data.title} />
-    <div className="flex items-start justify-between mb-6">
-      <div>
-        <span className="text-xs font-bold tracking-widest text-yellow-400 uppercase">{data.subtitle}</span>
-        <h2 className="text-2xl md:text-3xl font-black text-white mt-1">{data.title}</h2>
-      </div>
-      <button onClick={onClose} className="text-white/90 hover:text-yellow-400 transition-colors text-2xl leading-none mt-1">✕</button>
-    </div>
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-      {data.packages.map((pkg) => (
-        <div key={pkg.num} className="bg-white/5 border border-white/10 rounded-2xl p-5 flex flex-col gap-3">
-          <div className="flex items-center gap-2">
-            <span className="w-7 h-7 rounded-full bg-yellow-400 text-black text-sm font-black flex items-center justify-center shrink-0">{pkg.num}</span>
-            <div>
-              <p className="text-white font-bold text-sm">{pkg.name}</p>
-              {pkg.tag && <p className="text-yellow-400/60 text-xs">{pkg.tag}</p>}
-            </div>
-            <span className="ml-auto text-yellow-400 font-black text-base">{pkg.price}</span>
-          </div>
-          <ul className="flex flex-col gap-1.5">
-            {pkg.features.map((f) => (
-              <li key={f} className="flex items-start gap-2 text-white/90 text-xs">
-                <CheckIcon />{f}
-              </li>
-            ))}
-          </ul>
-          <p className="text-white/70 text-xs leading-relaxed border-t border-white/10 pt-3 mt-auto">{pkg.desc}</p>
-        </div>
-      ))}
-    </div>
-  </div>
-);
-
-const AddonModal = ({ data, onClose }) => (
-  <div className="p-4 sm:p-6 md:p-8">
-    <ModalImage src={data.image} alt={data.title} />
-    <div className="flex items-start justify-between mb-6">
-      <div>
-        <span className="text-xs font-bold tracking-widest text-yellow-400 uppercase">{data.subtitle}</span>
-        <h2 className="text-2xl md:text-3xl font-black text-white mt-1">{data.title}</h2>
-      </div>
-      <button onClick={onClose} className="text-white/90 hover:text-yellow-600 transition-colors text-2xl leading-none mt-1">✕</button>
-    </div>
-    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 mb-6">
-      {data.addons.map((a) => (
-        <div key={a.name} className="flex items-center justify-between bg-white/5 border border-white/10 rounded-xl px-4 py-3 gap-3">
-          <div className="flex items-center gap-2">
-            <CheckIcon />
-            <span className="text-white/90 text-sm font-medium">{a.name}</span>
-          </div>
-          <span className="text-yellow-400 font-black text-sm shrink-0">{a.price}</span>
-        </div>
-      ))}
-    </div>
-    <div className="flex flex-wrap gap-2">
-      {data.perks.map((p) => (
-        <span key={p} className="px-3 py-1 bg-yellow-400/10 border border-yellow-400/30 text-yellow-400 text-xs font-bold rounded-full">{p}</span>
-      ))}
-    </div>
-  </div>
-);
-
-const MembershipModal = ({ data, onClose }) => (
-  <div className="p-4 sm:p-6 md:p-8">
-    <ModalImage src={data.image} alt={data.title} />
-    <div className="flex items-start justify-between mb-6">
-      <div>
-        <span className="text-xs font-bold tracking-widest text-yellow-400 uppercase">{data.subtitle}</span>
-        <h2 className="text-2xl md:text-3xl font-black text-white mt-1">{data.title}</h2>
-      </div>
-      <button onClick={onClose} className="text-white/90 hover:text-yellow-600 transition-colors text-2xl leading-none mt-1">✕</button>
-    </div>
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-      {data.plans.map((plan) => (
-        <div key={plan.name} className={`relative bg-white/5 border rounded-2xl p-5 flex flex-col gap-3 ${plan.badge ? 'border-yellow-400/60' : 'border-white/10'}`}>
-          {plan.badge && (
-            <span className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-0.5 bg-yellow-400 text-black text-xs font-black rounded-full whitespace-nowrap">
-              {plan.badge}
-            </span>
-          )}
-          <div>
-            <p className="text-white font-black text-base">{plan.name}</p>
-            <div className="flex items-baseline gap-1 mt-1">
-              <span className="text-yellow-400 font-black text-2xl">{plan.price}</span>
-              <span className="text-white/90 text-xs">{plan.period}</span>
-            </div>
-            <span className="inline-block mt-2 px-2 py-0.5 bg-yellow-400/15 text-yellow-400 text-xs font-bold rounded-full">
-              {plan.highlight}
-            </span>
-          </div>
-          <ul className="flex flex-col gap-1.5 mt-1">
-            {plan.features.map((f) => (
-              <li key={f} className="flex items-start gap-2 text-white/90 text-xs">
-                <CheckIcon />{f}
-              </li>
-            ))}
-          </ul>
-        </div>
-      ))}
-    </div>
-    <div className="flex flex-wrap gap-2">
-      {data.perks.map((p) => (
-        <span key={p} className="px-3 py-1 bg-yellow-400/10 border border-yellow-400/30 text-yellow-400 text-xs font-bold rounded-full">{p}</span>
-      ))}
-    </div>
+const ImageOnlyModal = ({ data, onClose }) => (
+  <div className="relative">
+    <button
+      onClick={onClose}
+      aria-label="Close"
+      className="absolute top-3 right-3 z-10 flex items-center justify-center w-9 h-9 rounded-full bg-black/70 border border-white/20 text-white hover:bg-yellow-400 hover:text-black transition-colors duration-300"
+    >
+      ✕
+    </button>
+    {data.image ? (
+      <img src={data.image} alt={data.title} className="w-full h-auto object-contain rounded-2xl" />
+    ) : (
+      <div className="p-10 text-center text-white/70">No image available.</div>
+    )}
   </div>
 );
 
@@ -414,10 +271,7 @@ const Modal = ({ cardIndex, onClose }) => {
   };
 
   const renderContent = () => {
-    if (cardIndex <= 2) return <WashModal data={data} onClose={handleClose} />;
-    if (cardIndex === 3) return <DetailingModal data={data} onClose={handleClose} />;
-    if (cardIndex === 4) return <AddonModal data={data} onClose={handleClose} />;
-    if (cardIndex === 5) return <MembershipModal data={data} onClose={handleClose} />;
+    return <ImageOnlyModal data={data} onClose={handleClose} />;
   };
 
   return (
@@ -441,10 +295,10 @@ const Modal = ({ cardIndex, onClose }) => {
 // ─── Quick links marquee data ──────────────────────────────────────────────────
 
 const quickLinks = [
-  { label: 'Body Shop', href: '#body-shop', icon: Hammer },
-  { label: 'Car Accessories', href: '#car-accessories', icon: ShoppingBag },
-  { label: 'General Service', href: '#general-service', icon: Settings },
-  { label: 'Towing & Roadside Assistance', href: '#towing-&-roadside-assistance', icon: Truck },
+  { label: 'Body Shop', href: '#body-shop', image: bodyShopImg },
+  { label: 'Car Accessories', href: '#car-accessories', image: carAccessoriesImg },
+  { label: 'General Service', href: '#general-service', image: generalServiceImg },
+  { label: 'Towing & Roadside Assistance', href: '#towing-&-roadside-assistance', image: towingImg },
 ];
 
 // ─── Card data ────────────────────────────────────────────────────────────────
@@ -588,24 +442,24 @@ const Garage = () => {
             <div className="pointer-events-none absolute inset-y-0 left-0 w-16 sm:w-32 bg-gradient-to-r from-black to-transparent z-10" />
             <div className="pointer-events-none absolute inset-y-0 right-0 w-16 sm:w-32 bg-gradient-to-l from-black to-transparent z-10" />
             <div className="flex w-max gap-4 sm:gap-6 marquee-track">
-              {[...quickLinks, ...quickLinks].map((item, i) => {
-                const Icon = item.icon;
-                return (
-                  <a
-                    key={i}
-                    href={item.href}
-                    style={{ width: '250px', height: '150px' }}
-                    className="flex flex-col items-center justify-center gap-2 shrink-0 bg-zinc-900 border border-white/10 hover:border-yellow-400/50 rounded-2xl px-2 text-center transition-colors duration-300 group"
-                  >
-                    <span className="flex items-center justify-center w-9 h-9 rounded-full bg-yellow-400/10 text-yellow-400 group-hover:bg-yellow-400 group-hover:text-black transition-colors duration-300 shrink-0">
-                      <Icon size={18} strokeWidth={2.2} />
-                    </span>
-                    <span className="text-white/90 group-hover:text-yellow-400 text-[11px] leading-tight font-bold tracking-tight transition-colors duration-300">
-                      {item.label}
-                    </span>
-                  </a>
-                );
-              })}
+              {[...quickLinks, ...quickLinks].map((item, i) => (
+                <a
+                  key={i}
+                  href={item.href}
+                  style={{ width: '200px', height: '200px' }}
+                  className="relative shrink-0 rounded-2xl overflow-hidden border border-white/10 hover:border-yellow-400/50 transition-colors duration-300 group"
+                >
+                  <img
+                    src={item.image}
+                    alt={item.label}
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/10 to-transparent" />
+                  <span className="absolute bottom-1.5 left-1 right-1 text-white group-hover:text-yellow-400 text-[10px] leading-tight font-bold text-center transition-colors duration-300">
+                    {item.label}
+                  </span>
+                </a>
+              ))}
             </div>
           </div>
         </div>
