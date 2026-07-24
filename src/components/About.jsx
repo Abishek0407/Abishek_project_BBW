@@ -77,11 +77,11 @@ const About = () => {
               </p>
 
               <h2 className="text-5xl font-black leading-none tracking-tighter text-white md:text-7xl">
-                Built
+                
                 <br />
-                <span className="text-yellow-400">Beyond</span>
+                <span className="text-yellow-400">Your Car.</span>
                 <br />
-                Shine
+                Our Passion
               </h2>
             </div>
           </div>
