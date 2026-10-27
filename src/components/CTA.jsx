@@ -39,7 +39,7 @@ const BookingModal = ({ onClose }) => {
     name: '',
     phone: '',
     address: '',
-    service: '',
+    service: [],
     note: '',
   });
 
@@ -71,7 +71,7 @@ const BookingModal = ({ onClose }) => {
     if (!form.name.trim()) e.name = 'Name is required';
     if (!/^[6-9]\d{9}$/.test(form.phone)) e.phone = 'Enter a valid 10-digit mobile number';
     if (!form.address.trim()) e.address = 'Address is required';
-    if (!form.service) e.service = 'Please select a service';
+    if (form.service.length === 0) e.service = 'Please select at least one service';
     return e;
   };
 
@@ -86,7 +86,7 @@ const BookingModal = ({ onClose }) => {
       name: form.name.trim(),
       phone: form.phone.trim(),
       address: form.address.trim(),
-      service: form.service,
+      service: form.service.join(', '),
       note: form.note.trim(),
     };
 
@@ -234,23 +234,31 @@ const BookingModal = ({ onClose }) => {
                     errors.service ? 'border-red-400' : 'border-black/15'
                   } rounded-xl`}
                 >
-                  {services.map((s) => (
-                    <button
-                      type="button"
-                      key={s.id}
-                      onClick={() => {
-                        setForm((f) => ({ ...f, service: s.id }));
-                        setErrors((er) => ({ ...er, service: '' }));
-                      }}
-                      className={`px-3 py-1.5 rounded-full text-xs font-bold tracking-wide transition-all duration-200 ${
-                        form.service === s.id
-                          ? 'bg-black text-yellow-400 shadow-md scale-105'
-                          : 'bg-black/10 text-black/60 hover:bg-black/20'
-                      }`}
-                    >
-                      {s.label}
-                    </button>
-                  ))}
+                  {services.map((s) => {
+                    const selected = form.service.includes(s.label);
+                    return (
+                      <button
+                        type="button"
+                        key={s.id}
+                        onClick={() => {
+                          setForm((f) => ({
+                            ...f,
+                            service: f.service.includes(s.label)
+                              ? f.service.filter((service) => service !== s.label)
+                              : [...f.service, s.label],
+                          }));
+                          setErrors((er) => ({ ...er, service: '' }));
+                        }}
+                        className={`px-3 py-1.5 rounded-full text-xs font-bold tracking-wide transition-all duration-200 ${
+                          selected
+                            ? 'bg-black text-yellow-400 shadow-md scale-105'
+                            : 'bg-black/10 text-black/60 hover:bg-black/20'
+                        }`}
+                      >
+                        {s.label}
+                      </button>
+                    );
+                  })}
                 </div>
               </Field>
 

@@ -544,7 +544,9 @@ const AdminLogin = () => {
                               <td style={{ padding: "13px 16px", fontSize: "13px", fontWeight: 600, color: "#111827" }}>{b.name}</td>
                               <td style={{ padding: "13px 16px", fontSize: "13px", color: "#374151" }}>{b.phone}</td>
                               <td style={{ padding: "13px 16px", fontSize: "13px", color: "#374151", maxWidth: "150px" }}>{b.address}</td>
-                              <td style={{ padding: "13px 16px", fontSize: "13px", color: "#374151" }}>{b.service}</td>
+                              <td style={{ padding: "13px 16px", fontSize: "13px", color: "#374151", maxWidth: "180px" }}>
+                                {Array.isArray(b.service) ? b.service.join(", ") : b.service}
+                              </td>
                               <td style={{ padding: "13px 16px", fontSize: "13px", color: "#6b7280" }}>{b.note || "—"}</td>
                               <td style={{ padding: "13px 16px" }}>
                                 <span style={{
