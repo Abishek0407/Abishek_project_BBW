@@ -228,7 +228,7 @@ const BookingModal = ({ onClose }) => {
                 />
               </Field>
 
-              <Field label="Service Required" error={errors.service}>
+              <Field label="Service Required (Select all that apply)" error={errors.service}>
                 <div
                   className={`flex flex-wrap gap-2 p-3 bg-black/5 border ${
                     errors.service ? 'border-red-400' : 'border-black/15'
@@ -240,6 +240,7 @@ const BookingModal = ({ onClose }) => {
                       <button
                         type="button"
                         key={s.id}
+                        aria-pressed={selected}
                         onClick={() => {
                           setForm((f) => ({
                             ...f,
