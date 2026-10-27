@@ -108,7 +108,7 @@ const BookingModal = ({ onClose }) => {
       } catch {
         // backend returned non-JSON (e.g. HTML error page)
         if (!response.ok) {
-          setServerError(`Server error (${response.status}). Check your backend is running on port 5678.`);
+          setServerError(`Server error (${response.status}). Please try again in a moment.`);
           return;
         }
       }
@@ -122,7 +122,7 @@ const BookingModal = ({ onClose }) => {
 
     } catch (err) {
       if (err.message.includes('fetch')) {
-        setServerError('Cannot connect to server. Make sure your backend is running on http://localhost:5678');
+        setServerError('Cannot connect to server. Please check your internet and try again.');
       } else {
         setServerError(`Unexpected error: ${err.message}`);
       }
