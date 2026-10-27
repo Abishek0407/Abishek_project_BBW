@@ -86,7 +86,7 @@ const BookingModal = ({ onClose }) => {
       name: form.name.trim(),
       phone: form.phone.trim(),
       address: form.address.trim(),
-      service: form.service.join(', '),
+      service: form.service,
       note: form.note.trim(),
     };
 
